@@ -1,0 +1,20 @@
+  <ion-header translucent>
+    <ion-toolbar>
+      <ion-title class="ion-text-center">Medical Reminder</ion-title>
+    </ion-toolbar>
+  </ion-header>
+ 
+ <ion-content>
+   <form [formGroup]="form" (submit)="onSubmit()">
+     <ion-item>
+       <ion-label>Email</ion-label>
+       <ion-input type="text" required formControlName="email"></ion-input>
+     </ion-item>
+     <ion-item>
+       <ion-label>Password</ion-label>
+       <ion-input type="password" required formControlName="password"></ion-input>
+     </ion-item>
+     <ion-button type="submit" [disabled]="form.invalid">Login</ion-button>
+     <ion-button expand="block" class="ion-no-margin" size="small" fill="clear" [routerLink]="['/register']">New user? Register here!</ion-button>
+   </form>
+ </ion-content>

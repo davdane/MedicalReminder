@@ -1,0 +1,43 @@
+
+<ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Create Account</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen>
+
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+          <ion-item>
+            <ion-label position="stacked">Name <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input type="text" placeholder="Insert Name" required [(ngModel)]="newProfile.name"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Surname</ion-label>
+            <ion-input type="text" placeholder="Insert Surname" [(ngModel)]="newProfile.surname"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Age</ion-label>
+            <ion-input type="text" placeholder="Insert Age" [(ngModel)]="newProfile.age"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Height</ion-label>
+            <ion-input type="text" placeholder="Insert Height" [(ngModel)]="newProfile.height"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Weight</ion-label>
+            <ion-input type="text" placeholder="Insert Weight" [(ngModel)]="newProfile.weight"></ion-input>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!newProfile.name" (click)="addProfile()">
+          Create profile
+        </ion-button>
+
+     </ion-content>

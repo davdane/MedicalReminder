@@ -1,0 +1,47 @@
+<ion-header translucent>
+      <ion-toolbar>
+        <ion-title>Create Appointment</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content fullscreen>
+      <ion-list lines="full" class="ion-no-margin ion-no-padding">
+
+          <ion-item>
+            <ion-label position="stacked">Title <ion-text color="danger">*</ion-text></ion-label>
+            <ion-input type="text" placeholder="Insert Title" required [(ngModel)]="newAppointment.title"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Description</ion-label>
+            <ion-input type="text" placeholder="Insert Description" [(ngModel)]="newAppointment.description"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Place</ion-label>
+            <ion-input type="text" placeholder="Insert Place" [(ngModel)]="newAppointment.place"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Date</ion-label>
+            <ion-datetime displayFormat="DD MMM YYYY" min="2020" max="2099" placeholder="Select Date" [(ngModel)]="newAppointment.date"></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Time</ion-label>
+            <ion-datetime displayFormat="HH:mm" placeholder="Select Time" [(ngModel)]="newAppointment.time"></ion-datetime>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">Profile <ion-text color="danger">*</ion-text></ion-label>
+            <ion-select placeholder="Select Profile" [(ngModel)]="newAppointment.profile">
+              <ion-select-option *ngFor="let item of profiles">{{item.name}} {{item.surname}}</ion-select-option>
+
+            </ion-select>
+          </ion-item>
+
+        </ion-list>
+
+        <ion-button expand="block" type="submit" class="ion-no-margin" [disabled]="!newAppointment.title || !newAppointment.profile" (click)="addAppointment()" [routerLink]="['/home']">Add Appointment</ion-button>
+        <ion-button expand="block" type="submit" class="ion-no-margin" size="small" fill="clear" [routerLink]="['/home']">Cancel</ion-button>
+     </ion-content>

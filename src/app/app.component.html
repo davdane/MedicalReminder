@@ -1,0 +1,48 @@
+<ion-app>
+
+  <ion-menu side= "start" content-id="menu" name="Menu">
+    <ion-content>
+          <ion-list>
+            <ion-menu-toggle>
+              <!-- Quando viene aggiunto un profilo, viene inserito qui -->
+              <ion-item *ngFor="let item of profiles">
+                <ion-avatar slot="start"><!-- Immagine del profilo --></ion-avatar>
+
+                <ion-button slot="end">
+                  <ion-icon name="pencil"></ion-icon>
+                </ion-button>
+                <ion-button (click)="deleteProfile(item)" slot="end">
+                  <ion-icon name="trash"></ion-icon>
+                </ion-button>
+
+                {{item.name}} {{item.surname}}
+              </ion-item>
+
+              <ion-item [routerLink]="['/add-profile']">
+                <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+                <ion-label>Add new profile</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ion-list>
+    </ion-content>
+   <ion-footer>
+    <ion-toolbar>
+      <ion-button slot="end" (click)=logoutClicked()><ion-icon name="log-out-outline"></ion-icon> Logout</ion-button>
+    </ion-toolbar>
+   </ion-footer>
+  </ion-menu>
+
+  <ion-router-outlet id="menu">
+  </ion-router-outlet>
+
+  <div>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <ion-title class="ion-text-center">Medical Reminder</ion-title>
+        </ion-toolbar>
+      </ion-header>
+    </div>
+</ion-app>

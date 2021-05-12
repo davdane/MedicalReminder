@@ -1,0 +1,6 @@
+node_modules/
+www/
+plugins/
+.idea/
+platforms/
+debug.log
