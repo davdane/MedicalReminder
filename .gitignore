@@ -4,3 +4,4 @@ plugins/
 .idea/
 platforms/
 debug.log
+src/app/home/workspace.code-workspace

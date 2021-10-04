@@ -1,7 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { StorageService, Profile } from '../servic/storage.service';
 import { Platform } from "@ionic/angular";
-import { ToastController, NavController } from '@ionic/angular';
+import { ToastController, NavController, ModalController, LoadingController} from '@ionic/angular';
+import { AuthService } from '../auth.service';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
+
+imports: [
+  FormsModule,
+  ReactiveFormsModule
+]
 
 @Component({
   selector: 'app-add-profile',
@@ -10,48 +16,34 @@ import { ToastController, NavController } from '@ionic/angular';
 })
 export class AddProfilePage implements OnInit {
 
-  profiles: Profile[]=[];
-  newProfile: Profile=<Profile>{};
-
-
-  constructor(private storageService: StorageService, private plt: Platform, public toastController: ToastController, public navCtrl: NavController) {
+  constructor(
+    private AuthService: AuthService,
+    private plt: Platform,
+    public toastController: ToastController, 
+    public navCtrl: NavController,
+    public ModalCtrl: ModalController,
+    public loadingCtrl: LoadingController
+    ) {
     this.plt.ready().then(() => {
-      this.loadProfiles();
-    });
-  }
-  //CREATE
-  addProfile() {
-    this.newProfile.id = Date.now();
-
-    this.storageService.addProfile(this.newProfile).then(item => {
-      this.newProfile=<Profile>{};
-      this.ToastProfile();
-      this.loadProfiles();
-      this.navCtrl.navigateRoot("/home");
-      });
-  }
-  //READ
-  loadProfiles(){
-    this.storageService.getProfiles().then(items => {
-      this.profiles=items;
-    });
-  }
-  //UPDATE
-  updateProfile(item: Profile) {
-    item.name='${Profile.name}';
-
-    this.storageService.updateProfile(item).then(items => {
-      this.loadProfiles();
-    });
-  }
-  //DELETE
-  deleteProfile(item) {
-    this.storageService.deleteProfile(item).then(items => {
-      this.loadProfiles();
-      alert("Profile deleted!");
     });
   }
 
+  form = new FormGroup({
+    nome: new FormControl('', Validators.compose ([
+      Validators.maxLength (70),
+      Validators.required,
+      Validators.minLength(3),
+    ]))
+  });
+
+  async onSubmit(form:NgForm){
+    const profile = form.value;
+    this.AuthService.createProfile(profile).subscribe(response=>console.log(response))
+  }
+
+  back(){
+    this.ModalCtrl.dismiss();
+  }
   async ToastProfile() {
     const toast = await this.toastController.create({
       message: 'Profile added!',

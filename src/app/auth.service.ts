@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Profiles } from './profiles.model';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +20,9 @@ export class AuthService {
     return this.http.post<{ token: string }>(`${this.url}/login`, credentials).pipe(
       map(response => response.token)
     );
+  }
+
+  createProfile(profile: Profiles){
+    return this.http.post(`${this.url}/add-profile`, profile);
   }
 }
