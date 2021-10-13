@@ -1,5 +1,5 @@
 export interface Profiles {
-    id_user: string;
+    id_user?: string;
     nome: string;
     cognome: string;
     altezza: string;

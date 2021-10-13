@@ -6,37 +6,42 @@
     </ion-header>
 
     <ion-content fullscreen>
-      <form (ngSubmit)="onSubmit(form)">
+      <form [formGroup]="form" (submit)="onSubmit()">
         <ion-list lines="full" class="ion-no-margin ion-no-padding">
 
           <ion-item>
             <ion-label position="stacked">Name <ion-text color="danger">*</ion-text></ion-label>
-            <ion-input type="text" placeholder="Insert Name" ngModel name="nome"></ion-input>
+            <ion-input type="text" placeholder="Insert Name" formControlName="nome"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Surname</ion-label>
-            <ion-input type="text" placeholder="Insert Surname" ngModel name="cognome"></ion-input>
+            <ion-input type="text" placeholder="Insert Surname" formControlName="cognome"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Age</ion-label>
-            <ion-input type="text" placeholder="Insert Age" ngModel name="età"></ion-input>
+            <ion-input type="text" placeholder="Insert Age" formControlName="età"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Height</ion-label>
-            <ion-input type="text" placeholder="Insert Height" ngModel name="altezza"></ion-input>
+            <ion-input type="text" placeholder="Insert Height" formControlName="altezza"></ion-input>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Weight</ion-label>
-            <ion-input type="text" placeholder="Insert Weight" ngModel name="peso"></ion-input>
+            <ion-input type="text" placeholder="Insert Weight" formControlName="peso"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="stacked">id</ion-label>
+            <ion-input type="text" placeholder="PROVA" formControlName="id_user"></ion-input>
           </ion-item>
 
         </ion-list>
 
-        <ion-button expand="block" type="submit" class="ion-no-margin">
+        <ion-button expand="block" type="submit" [disabled]="form.invalid" class="ion-no-margin">
           Create profile
         </ion-button>
         <ion-button expand="block" class="ion-no-margin" size="small" fill="clear" (click)="back()">

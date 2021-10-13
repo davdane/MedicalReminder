@@ -23,6 +23,11 @@ export class AuthService {
   }
 
   createProfile(profile: Profiles){
-    return this.http.post(`${this.url}/add-profile`, profile);
+    return this.http.post(`${this.url}/profili`, profile);
+  }
+
+  tokenToId(token: string){
+    return this.http.post(`${this.url}/tokentoid`, token);
   }
 }
+
