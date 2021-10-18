@@ -44,7 +44,7 @@
         <ion-button expand="block" type="submit" [disabled]="form.invalid" class="ion-no-margin">
           Create profile
         </ion-button>
-        <ion-button expand="block" class="ion-no-margin" size="small" fill="clear" (click)="back()">
+        <ion-button expand="block" class="ion-no-margin" size="small" fill="clear" [routerLink]="['/home']">
           Back to Homepage
         </ion-button>
       </form>
