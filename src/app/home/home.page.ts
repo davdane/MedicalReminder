@@ -12,9 +12,11 @@ export class HomePage {
 
   constructor(private plt: Platform, public alertController: AlertController, private authService: AuthService,) {
     this.plt.ready().then(() => {
-      this.authService.getProfiles("1"),
+      this.authService.getProfiles(localStorage.getItem('token')),
       console.log()
     });
+
+    
   }
 
 }

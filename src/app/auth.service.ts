@@ -35,12 +35,12 @@ export class AuthService {
       this.isAuthenticated.next(false);
     }
   }
-  getProfiles(id_user: any){
-    return this.http.get(`${this.url}/profili`, id_user)
+  getProfiles(tokenString: any){
+    return this.http.get(`${this.url}/profili`, tokenString)
   }
 
-  createProfile(profile: Profiles){
-    return this.http.post(`${this.url}/profili`, profile);
+  createProfile(profile: Profiles, tokenString: any){
+    return this.http.post(`${this.url}/profili`, profile, tokenString);
   }
 
   onCreate() {
@@ -50,11 +50,8 @@ export class AuthService {
       Authorization: 'Bearer ' + token
     });
 
-    this.http.post(`http://localhost/provaAPI/api/create`, 'body', { headers }).subscribe(console.log);
+    this.http.get(`http://localhost/provaAPI/api/profili`, { headers }).subscribe(console.log);
   }
 
-  tokenToId(token: string){
-    return this.http.post(`${this.url}/tokentoid`, token);
-  }
 }
 

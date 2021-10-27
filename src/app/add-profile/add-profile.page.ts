@@ -49,22 +49,18 @@ export class AddProfilePage implements OnInit {
       Validators.pattern(/^-?(0|[1-9]\d*)?$/),
       Validators.maxLength(6),
     ])),
-    id_user: new FormControl('', Validators.compose([
-      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
-      Validators.maxLength(6),
-    ])),
   });
 
   async onSubmit(){
     const loading = await this.loadingCtrl.create({ message: 'Creating...' });
     await loading.present();
+    let tokenString = localStorage.getItem("token");
 
-    this.AuthService.createProfile(this.form.value,).subscribe(
+    this.AuthService.createProfile(this.form.value, tokenString).subscribe(
       // If success
       async () => {
         const toast = await this.toastCtrl.create({ message: 'Profile created!', duration: 8000, color: 'dark' });
         await toast.present();
-        console.log(localStorage.getItem("token"));
         loading.dismiss();
         
       },
