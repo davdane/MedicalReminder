@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Platform } from "@ionic/angular";
 import { AlertController } from '@ionic/angular';
 import { AuthService } from '../auth.service';
+import { Profiles } from '../profiles.model';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +10,11 @@ import { AuthService } from '../auth.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  profile: Profiles[]
 
   constructor(private plt: Platform, public alertController: AlertController, private authService: AuthService,) {
     this.plt.ready().then(() => {
-      this.authService.getProfiles(localStorage.getItem('token')),
-      console.log()
+      this.authService.getProfiles().subscribe(console.log)
     });
 
     

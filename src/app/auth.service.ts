@@ -35,12 +35,20 @@ export class AuthService {
       this.isAuthenticated.next(false);
     }
   }
-  getProfiles(tokenString: any){
-    return this.http.get(`${this.url}/profili`, tokenString)
+  getProfiles(){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
+    return this.http.get(`${this.url}/profili`, { headers })
   }
 
-  createProfile(profile: Profiles, tokenString: any){
-    return this.http.post(`${this.url}/profili`, profile, tokenString);
+  createProfile(profile: Profiles){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
+    return this.http.post(`${this.url}/profili`, profile, { headers })
   }
 
   onCreate() {
@@ -50,7 +58,7 @@ export class AuthService {
       Authorization: 'Bearer ' + token
     });
 
-    this.http.get(`http://localhost/provaAPI/api/profili`, { headers }).subscribe(console.log);
+    //this.http.get(`http://localhost/provaAPI/api/profili`, { headers }).subscribe(console.log);
   }
 
 }
