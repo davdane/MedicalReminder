@@ -11,7 +11,7 @@
      </ion-toolbar>
    </ion-header>
 
-  <div id="new"  *ngIf="!profiles || profiles.length===0 else conditionFalse">
+  <div id="new"  *ngIf="!profile || profile.length===0 else conditionFalse">
     <strong>Are you a new user?</strong>
     <p id="start">Start by adding a new profile!</p>
   <p>
@@ -30,9 +30,9 @@
     <ion-list-header>
     <strong>Upcoming appointments:</strong>
     </ion-list-header>
-      <ion-item-sliding *ngFor="let item of appointments">
+      <ion-item-sliding *ngFor="let item of profile">
         <ion-item-options side="end">
-          <ion-item-option color="danger" (click)="presentAlertConfirm(item)">DELETE</ion-item-option>
+          <ion-item-option color="danger" (click)="presentAlertConfirm(profile)">DELETE</ion-item-option>
         </ion-item-options>
 
         <ion-item>
@@ -40,10 +40,7 @@
             <img src="./assets/icon/favicon.png">
           </ion-avatar>
           <ion-label>
-            <h2>{{item.profile}}</h2>
-            <h2>{{item.date}}</h2>
-            <h3>{{item.title}}</h3>
-            <p>{{item.description}}</p>
+            <h2>{{item.nome}} {{item.cognome}}</h2>
           </ion-label>
 
         </ion-item>

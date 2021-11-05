@@ -40,7 +40,7 @@ export class AuthService {
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token
     });
-    return this.http.get(`${this.url}/profili`, { headers })
+    return this.http.get<[Profiles]>(`${this.url}/profili`, { headers })
   }
 
   createProfile(profile: Profiles){
@@ -51,15 +51,6 @@ export class AuthService {
     return this.http.post(`${this.url}/profili`, profile, { headers })
   }
 
-  onCreate() {
-    // Do this on service. But for this demo lets do here
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: 'Bearer ' + token
-    });
-
-    //this.http.get(`http://localhost/provaAPI/api/profili`, { headers }).subscribe(console.log);
-  }
 
 }
 
