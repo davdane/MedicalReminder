@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform } from '@ionic/angular';
+import { Platform  } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Profiles } from './profiles.model';
+import { Appointments } from './appointments.model';
 import { AuthService } from './auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +15,14 @@ import { AuthService } from './auth.service';
 export class AppComponent implements OnInit{
   
   profile: Profiles [];
+  appoint: Appointments[];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.initializeApp();
 
@@ -39,5 +43,16 @@ export class AppComponent implements OnInit{
     })
     
  }
+
+ deleteProfile(id_profiles: string){
+  this.authService.deleteProfile(id_profiles).subscribe(()=>{
+    this.profile = this.profile.filter(prof=>prof.id_profiles !== id_profiles)
+  })
+ }
+
+async logoutClicked(){
+  localStorage.removeItem("token");
+  this.router.navigateByUrl('/',{replaceUrl: true})
+}
 
  }

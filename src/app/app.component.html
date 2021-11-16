@@ -8,10 +8,7 @@
               <ion-item *ngFor="let item of profile">
                 <ion-avatar slot="start"><!-- Immagine del profilo --></ion-avatar>
 
-                <ion-button slot="end">
-                  <ion-icon name="pencil"></ion-icon>
-                </ion-button>
-                <ion-button (click)="deleteProfile(item)" slot="end">
+                <ion-button (click)="deleteProfile(item.id_profiles)" slot="end">
                   <ion-icon name="trash"></ion-icon>
                 </ion-button>
                 {{item.nome}} {{item.cognome}}

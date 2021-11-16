@@ -4,6 +4,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
 import { Profiles } from './profiles.model';
+import { Appointments } from './appointments.model';
 
 @Injectable({
   providedIn: 'root',
@@ -51,6 +52,16 @@ export class AuthService {
     return this.http.post(`${this.url}/profili`, profile, { headers })
   }
 
+  deleteProfile(id: string){
+    return this.http.delete(`${this.url}/profili/`+ id);
+  }
 
+  addAppointment(appoint: Appointments){
+    return this.http.post(`${this.url}/appoint`, appoint)
+  }
+
+  getAllAppoint(){
+    return this.http.get<[Appointments]>(`${this.url}/appoint`)
+  }
 }
 

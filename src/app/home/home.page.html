@@ -30,17 +30,21 @@
     <ion-list-header>
     <strong>Upcoming appointments:</strong>
     </ion-list-header>
-      <ion-item-sliding *ngFor="let item of profile">
+      <ion-item-sliding *ngFor="let item of appoints">
         <ion-item-options side="end">
-          <ion-item-option color="danger" (click)="presentAlertConfirm(profile)">DELETE</ion-item-option>
+         <ion-item-option color="danger">DELETE</ion-item-option>
         </ion-item-options>
 
         <ion-item>
           <ion-avatar slot="start">
-            <img src="./assets/icon/favicon.png">
+            <div class="avatar">
+            {{item.titolo.substring(0, 1).toUpperCase()}}
+          </div>
           </ion-avatar>
           <ion-label>
-            <h2>{{item.nome}} {{item.cognome}}</h2>
+            <h2>{{item.titolo}}</h2>
+            <h3>{{item.descrizione}}</h3>
+            <h4>{{item.date}}, {{item.time}}</h4>
           </ion-label>
 
         </ion-item>

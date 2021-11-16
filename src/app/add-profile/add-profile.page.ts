@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Platform, ToastController, NavController, ModalController, LoadingController, AlertController} from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
+import { Router } from '@angular/router';
 
 imports: [
   FormsModule,
@@ -22,7 +23,8 @@ export class AddProfilePage implements OnInit {
     public navCtrl: NavController,
     public ModalCtrl: ModalController,
     public loadingCtrl: LoadingController,
-    public alertCtrl: AlertController
+    public alertCtrl: AlertController,
+    private router: Router
     ) {
     this.plt.ready().then(() => {
     });
@@ -61,6 +63,7 @@ export class AddProfilePage implements OnInit {
         const toast = await this.toastCtrl.create({ message: 'Profile created!', duration: 8000, color: 'dark' });
         await toast.present();
         loading.dismiss();
+        this.router.navigateByUrl('/home',{replaceUrl: true});
         
       },
       // If there is an error
