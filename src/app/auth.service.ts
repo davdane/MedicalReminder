@@ -61,7 +61,11 @@ export class AuthService {
   }
 
   getAllAppoint(){
-    return this.http.get<[Appointments]>(`${this.url}/appoint`)
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
+    return this.http.get<[Appointments]>(`${this.url}/appoint`, { headers })
   }
 }
 

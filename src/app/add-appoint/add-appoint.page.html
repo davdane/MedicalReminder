@@ -25,18 +25,13 @@
 
           <ion-item>
             <ion-label position="stacked">Date</ion-label>
-            <ion-datetime displayFormat="DD MMM YYYY" min="2020" max="2099" placeholder="Select Date"></ion-datetime>
-          </ion-item>
-
-          <ion-item>
-            <ion-label position="stacked">Time</ion-label>
-            <ion-datetime displayFormat="HH:mm" placeholder="Select Time"></ion-datetime>
+            <ion-datetime displayFormat="DD MMM YYYY HH:mm" max="2099" min="2021" placeholder="Select Date" formControlName="date"></ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label position="stacked">Profile <ion-text color="danger">*</ion-text></ion-label>
-            <ion-select placeholder="Select Profile">
-              <ion-select-option *ngFor="let item of profile">{{item.nome}} {{item.cognome}}</ion-select-option>
+            <ion-select placeholder="Select Profile" formControlName="id_profiles" required>
+              <ion-select-option *ngFor="let item of profile" value="{{item.id_profiles}}">{{item.nome}}{{item.cognome}}</ion-select-option>
 
             </ion-select>
           </ion-item>

@@ -50,10 +50,15 @@ export class AddAppointPage{
     desc: new FormControl('', [
       Validators.maxLength(64),
     ]),
-    place: new FormControl('', Validators.compose([
+    place: new FormControl('',[
       Validators.maxLength(32),
-    ])),
-    
+    ]),
+    date: new FormControl('',[
+      Validators.maxLength(64),
+    ]),
+    id_profiles: new FormControl('',[
+      Validators.required,
+    ])
   });
 
 
@@ -61,7 +66,7 @@ export class AddAppointPage{
     const loading = await this.loadingCtrl.create({ message: 'Creating...' });
     await loading.present();
     
-    this.authService.createProfile(this.form.value).subscribe(
+    this.authService.addAppointment(this.form.value).subscribe(
       // If success
       async () => {
         const toast = await this.toastCtrl.create({ message: 'Profile created!', duration: 8000, color: 'dark' });
