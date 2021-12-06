@@ -1,8 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Platform, ToastController, NavController, ModalController, LoadingController, AlertController} from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
+import { Profiles } from '../profiles.model';
 
 imports: [
   FormsModule,
@@ -15,6 +16,9 @@ imports: [
   styleUrls: ['./add-profile.page.scss'],
 })
 export class AddProfilePage implements OnInit {
+
+  @Input() profile: Profiles;
+  isUpdate=false;
 
   constructor(
     private AuthService: AuthService,
@@ -56,7 +60,13 @@ export class AddProfilePage implements OnInit {
   async onSubmit(){
     const loading = await this.loadingCtrl.create({ message: 'Creating...' });
     await loading.present();
-    
+    //if (this.isUpdate){
+    //  this.AuthService.updateProfile(this.form.value).subscribe( response=>{
+    //    this.ModalCtrl.dismiss(response, "Profile updated!")
+    //  }
+
+    //  )
+    //}
     this.AuthService.createProfile(this.form.value).subscribe(
       // If success
       async () => {
@@ -85,6 +95,10 @@ export class AddProfilePage implements OnInit {
     toast.present();
   }
   ngOnInit() {
+    if (this.profile){
+      this.isUpdate = true;
+      this.form.setValue({nome: this.profile.nome, cognome: this.profile.cognome, age: this.profile.age, altezza: this.profile.altezza, peso: this.profile.peso});      
+    }
   }
 
 }

@@ -67,5 +67,9 @@ export class AuthService {
     });
     return this.http.get<[Appointments]>(`${this.url}/appoint`, { headers })
   }
+
+  deleteAppoint(id: string){
+    return this.http.delete(`${this.url}/appoint/`+ id);
+  }
 }
 

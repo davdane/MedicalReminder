@@ -6,7 +6,7 @@
             <ion-menu-toggle>
               <!-- Quando viene aggiunto un profilo, viene inserito qui -->
               <ion-item *ngFor="let item of profile">
-                <ion-avatar slot="start"><!-- Immagine del profilo --></ion-avatar>
+                <ion-avatar slot="start" (click)="updateProf(item)"><!-- Immagine del profilo --></ion-avatar>
 
                 <ion-button (click)="deleteProfile(item.id_profiles)" slot="end">
                   <ion-icon name="trash"></ion-icon>
@@ -14,7 +14,7 @@
                 {{item.nome}} {{item.cognome}}
               </ion-item>
 
-              <ion-item [routerLink]="['/add-profile']">
+              <ion-item (click)="addProfile()">
                 <ion-icon name="add-circle-outline" slot="start"></ion-icon>
                 <ion-label>Add new profile</ion-label>
               </ion-item>

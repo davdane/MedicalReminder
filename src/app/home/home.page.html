@@ -16,7 +16,7 @@
     <p id="start">Start by adding a new profile!</p>
   <p>
     <ion-fab horizontal="center">
-      <ion-fab-button [routerLink]="['/add-profile']">
+      <ion-fab-button (click)="addProfile()">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-fab>
@@ -33,12 +33,12 @@
     <ng-container *ngFor="let item of appoints">
       <ion-item-sliding>
         <ion-item-options side="end">
-         <ion-item-option color="danger">DELETE</ion-item-option>
+         <ion-item-option color="danger" (click)="presentAlertConfirm(item.id_appoint)">DELETE</ion-item-option>
         </ion-item-options>
 
-        <ion-item>
+        <ion-item (click)="updateApp()">
           <ion-avatar slot="start">
-            <div class="avatar" let item of profiles>
+            <div class="avatar">
             {{item.titolo.substring(0, 1).toUpperCase()}}
           </div>
           </ion-avatar>

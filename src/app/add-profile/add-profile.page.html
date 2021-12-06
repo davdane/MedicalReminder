@@ -1,7 +1,7 @@
 
 <ion-header translucent>
       <ion-toolbar>
-        <ion-title>Create Account</ion-title>
+        <ion-title>{{isUpdate? "Modify" : "Create"}} Profile</ion-title>
       </ion-toolbar>
     </ion-header>
 
@@ -37,9 +37,9 @@
         </ion-list>
 
         <ion-button expand="block" type="submit" [disabled]="form.invalid" class="ion-no-margin">
-          Create profile
+          Save
         </ion-button>
-        <ion-button expand="block" class="ion-no-margin" size="small" fill="clear" [routerLink]="['/home']">
+        <ion-button expand="block" class="ion-no-margin" size="small" fill="clear" (click)="back()">
           Back to Homepage
         </ion-button>
       </form>

@@ -69,7 +69,7 @@ export class AddAppointPage{
     this.authService.addAppointment(this.form.value).subscribe(
       // If success
       async () => {
-        const toast = await this.toastCtrl.create({ message: 'Profile created!', duration: 8000, color: 'dark' });
+        const toast = await this.toastCtrl.create({ message: 'Appointment created!', duration: 8000, color: 'dark' });
         await toast.present();
         loading.dismiss();
         this.router.navigateByUrl('/home',{replaceUrl: true});
