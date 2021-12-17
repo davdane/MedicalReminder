@@ -5,7 +5,7 @@
           <ion-list>
             <ion-menu-toggle>
               <!-- Quando viene aggiunto un profilo, viene inserito qui -->
-              <ion-item *ngFor="let item of profile">
+              <ion-item *ngFor="let item of profile" >
                 <ion-avatar slot="start" (click)="updateProf(item)"><!-- Immagine del profilo --></ion-avatar>
 
                 <ion-button (click)="deleteProfile(item.id_profiles)" slot="end">

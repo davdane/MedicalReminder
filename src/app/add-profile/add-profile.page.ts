@@ -44,36 +44,41 @@ export class AddProfilePage implements OnInit {
       Validators.maxLength(36),
     ]),
     age: new FormControl('', Validators.compose([
-      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
-      Validators.maxLength(4),
+      Validators.maxLength(10),
     ])),
     altezza: new FormControl('', Validators.compose([
-      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
       Validators.maxLength(6),
     ])),
     peso: new FormControl('', Validators.compose([
-      Validators.pattern(/^-?(0|[1-9]\d*)?$/),
       Validators.maxLength(6),
-    ])),
+    ]))
   });
 
   async onSubmit(){
     const loading = await this.loadingCtrl.create({ message: 'Creating...' });
     await loading.present();
-    //if (this.isUpdate){
-    //  this.AuthService.updateProfile(this.form.value).subscribe( response=>{
-    //    this.ModalCtrl.dismiss(response, "Profile updated!")
-    //  }
-
-    //  )
-    //}
+    if (this.isUpdate){
+    this.AuthService.updateProfile(this.form.value, this.profile.id_profiles).subscribe(
+      async()=>{
+        const toast = await this.toastCtrl.create({ message: 'Profile updated!', duration: 8000, color: 'dark' });
+        await toast.present();
+        this.ModalCtrl.dismiss();
+        loading.dismiss();
+      },
+      async () => {
+        const alert = await this.alertCtrl.create({ message: 'There is an error', buttons: ['OK'] });
+        loading.dismiss();
+        await alert.present();
+      })
+    }
+     else {
     this.AuthService.createProfile(this.form.value).subscribe(
       // If success
       async () => {
         const toast = await this.toastCtrl.create({ message: 'Profile created!', duration: 8000, color: 'dark' });
         await toast.present();
+        this.ModalCtrl.dismiss()
         loading.dismiss();
-        this.router.navigateByUrl('/home',{replaceUrl: true});
         
       },
       // If there is an error
@@ -83,17 +88,13 @@ export class AddProfilePage implements OnInit {
         await alert.present();
       })
   }
+}
+
 
   back(){
     this.ModalCtrl.dismiss();
   }
-  async ToastProfile() {
-    const toast = await this.toastCtrl.create({
-      message: 'Profile added!',
-      duration: 2000
-    });
-    toast.present();
-  }
+  
   ngOnInit() {
     if (this.profile){
       this.isUpdate = true;

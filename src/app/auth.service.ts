@@ -52,6 +52,14 @@ export class AuthService {
     return this.http.post(`${this.url}/profili`, profile, { headers })
   }
 
+  updateProfile(profile: Profiles, id: string){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: 'Bearer ' + token
+    });
+    return this.http.put(`${this.url}/profili/`+ id, profile, { headers })
+  }
+
   deleteProfile(id: string){
     return this.http.delete(`${this.url}/profili/`+ id);
   }
