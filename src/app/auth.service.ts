@@ -76,6 +76,10 @@ export class AuthService {
     return this.http.get<[Appointments]>(`${this.url}/appoint`, { headers })
   }
 
+  updateAppoint(appoint: Appointments, id: string){
+    return this.http.put(`${this.url}/appoint/`+ id, appoint)
+  }
+
   deleteAppoint(id: string){
     return this.http.delete(`${this.url}/appoint/`+ id);
   }

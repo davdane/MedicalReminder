@@ -12,10 +12,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProfilePage } from './add-profile/add-profile.page';
+import { AddAppointPage } from './add-appoint/add-appoint.page';
 
 @NgModule({
-  declarations: [AppComponent, AddProfilePage],
-  entryComponents: [AddProfilePage],
+  declarations: [AppComponent, AddProfilePage, AddAppointPage],
+  entryComponents: [AddProfilePage, AddAppointPage],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule],
   providers:
   [

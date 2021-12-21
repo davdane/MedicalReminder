@@ -36,7 +36,7 @@
          <ion-item-option color="danger" (click)="presentAlertConfirm(item.id_appoint)">DELETE</ion-item-option>
         </ion-item-options>
 
-        <ion-item (click)="updateApp()">
+        <ion-item (click)="updateApp(item)">
           <ion-avatar slot="start">
             <div class="avatar">
             {{item.titolo.substring(0, 1).toUpperCase()}}
@@ -54,7 +54,7 @@
         <ion-item lines="none">
           <br><br><br><br><br><br>
           <ion-fab horizontal="center">
-            <ion-fab-button [routerLink]="['/add-appoint']">
+            <ion-fab-button (click)="addAppoint()">
               <ion-icon name="add"></ion-icon>
             </ion-fab-button>
           </ion-fab>

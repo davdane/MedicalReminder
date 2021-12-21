@@ -45,8 +45,16 @@ export class HomePage implements OnInit{
     }).then(modal=>modal.present())
    }
 
+  addAppoint(){
+    this.modalCtrl.create({
+      component: AddAppointPage
+    }).then(modal=>modal.present())
+   }
   updateApp(appoints: Appointments){
-    console.log(appoints);
+    this.modalCtrl.create({
+      component: AddAppointPage,
+      componentProps: {appoints}
+    }).then(modal=>modal.present())
   }
 
   async presentAlertConfirm(id_appoint: string) {
