@@ -87,7 +87,7 @@ export class AddAppointPage implements OnInit{
           const toast = await this.toastCtrl.create({ message: 'Appointment created!', duration: 8000, color: 'dark' });
           await toast.present();
           loading.dismiss();
-          this.router.navigateByUrl('/home',{replaceUrl: true});
+          this.ModalCtrl.dismiss();
         
         },
       // If there is an error
