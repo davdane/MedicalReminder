@@ -18,6 +18,13 @@ export class HomePage implements OnInit{
   
   profile: Profiles[];
   appoints: Appointments[];
+  currentdate = new Date(); 
+  datetime =    this.currentdate.getFullYear() + "-"
+                + (this.currentdate.getMonth()+1)  + "-" 
+                + this.currentdate.getDate() + " "  
+                + this.currentdate.getHours() + ":"  
+                + this.currentdate.getMinutes() + ":" 
+                + this.currentdate.getSeconds();
 
   constructor(private plt: Platform, public alertController: AlertController, private authService: AuthService, private router: Router, private modalCtrl: ModalController)
    {}

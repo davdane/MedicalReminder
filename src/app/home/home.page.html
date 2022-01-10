@@ -2,6 +2,10 @@
   <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
+  <ion-header>
+     <ion-toolbar>
+     </ion-toolbar>
+   </ion-header>
 
   <div id="new"  *ngIf="!profile || profile.length===0 else conditionFalse">
     <strong>Are you a new user?</strong>
@@ -28,7 +32,7 @@
          <ion-item-option color="danger" (click)="presentAlertConfirm(item.id_appoint)">DELETE</ion-item-option>
         </ion-item-options>
 
-        <ion-item (click)="updateApp(item)">
+        <ion-item (click)="updateApp(item)" *ngIf="item.date >= datetime">
           <ion-avatar slot="start">
             
             <div class="avatar">
@@ -42,7 +46,7 @@
           <ion-label>
             <h2>{{item.titolo}}</h2>
             <h3>{{item.descrizione}}</h3>
-            <h4>{{item.date |  date:"MM/dd/yy hh:mm"}}</h4>
+            <h4>{{item.date |  date:"MM/dd/yy hh:mm" }}</h4>
           </ion-label>
         </ion-item>
       </ion-item-sliding>
