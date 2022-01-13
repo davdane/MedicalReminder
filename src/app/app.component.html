@@ -8,7 +8,7 @@
               <ion-item *ngFor="let item of profile">
                 <ion-avatar slot="start" (click)="updateProf(item)">
                   <div class="avatar">
-                    {{item.nome.substring(0, 1).toUpperCase()}}
+                    {{item.nome.substring(0, 1).toUpperCase()}}{{item.cognome.substring(0, 1).toUpperCase()}}
                   </div>
                 </ion-avatar>
 
@@ -35,7 +35,7 @@
   <ion-router-outlet id="menu">
   </ion-router-outlet>
 
-  <div>
+    <div>
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">

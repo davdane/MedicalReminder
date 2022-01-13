@@ -90,6 +90,25 @@ export class HomePage implements OnInit{
 
     await alert.present();
   }
+
+  dateFilter($event){
+    this.appoints = this.appoints.filter((appoints)=>{
+      if ($event.target.value=="Past"){
+        return appoints.date < this.datetime;
+      } if ($event.target.value=="Future"){
+        return appoints.date > this.datetime;
+      } if ($event.target.value=="All"){
+        return true;
+      }
+    });
+  }
+
+  profileFilter($event){
+    this.appoints = this.appoints.filter((appoints)=>{      
+        return appoints.id_profiles == $event.target.value;
+    });
+  }
+
   doRefresh(event) {
     console.log('Refreshing...');
 

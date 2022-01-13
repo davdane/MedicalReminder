@@ -40,6 +40,9 @@ const routes: Routes = [
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule),
     pathMatch: 'full'
   },
+  
+
+
 
 ];
 
