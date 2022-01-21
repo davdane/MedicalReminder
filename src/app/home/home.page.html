@@ -21,26 +21,27 @@
 
 <ng-template #conditionFalse>
   <div class="ion-text-center">    
-    <ion-item>
-      <ion-select interface="popover" placeholder="Filter by date" (ionChange)="dateFilter($event)">
+    <ion-item>      
+      <ion-select disabled="{{isSelectedP}}" [(ngModel)]="profselect" interface="popover" placeholder="Select Profile" (ionChange)="profileFilter($event)">
+        <ion-select-option  *ngFor="let item of profile" value="{{item.id_profiles}}">{{item.nome}}{{item.cognome}}</ion-select-option>
+      </ion-select>
+
+      <ion-select [(ngModel)]="dateselect" disabled="{{isSelectedD}}" interface="popover" placeholder="Filter by date" (ionChange)="dateFilter($event)">
         <ion-select-option value="Past">Past appointments</ion-select-option>
         <ion-select-option value="Future">Future appointments</ion-select-option>
-        <ion-select-option value="All">All appointments</ion-select-option>
+        <ion-select-option value="">All appointments</ion-select-option>
       </ion-select>
-      <ion-select interface="popover" placeholder="Select Profile" (ionChange)="profileFilter($event)">
-        <ion-select-option *ngFor="let item of profile" value="{{item.id_profiles}}">{{item.nome}}{{item.cognome}}</ion-select-option>
-      </ion-select>
-    </ion-item>
-      <div>
 
-      </div>  
+      <ion-button (click)="resetData()">Reset</ion-button>
+    </ion-item>
+ 
   <ion-list>
 
     <ion-list-header>
     <strong>Upcoming appointments:</strong>
     </ion-list-header>
 
-      <ion-item-sliding *ngFor="let item of appoints">
+      <ion-item-sliding *ngFor="let item of modifiedApp">
         <ion-item-options side="end">
          <ion-item-option color="danger" (click)="presentAlertConfirm(item.id_appoint)">DELETE</ion-item-option>
         </ion-item-options>

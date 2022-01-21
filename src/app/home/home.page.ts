@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { Appointments } from '../appointments.model';
 import { AddAppointPage } from '../add-appoint/add-appoint.page';
 import { AddProfilePage } from '../add-profile/add-profile.page';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 
 @Component({
@@ -18,6 +19,12 @@ export class HomePage implements OnInit{
   
   profile: Profiles[];
   appoints: Appointments[];
+  modifiedApp: any;
+  dateselect: string;
+  profselect: string;
+  isSelectedP=false;
+  isSelectedD=false;
+
   currentdate = new Date(); 
   datetime =    this.currentdate.getFullYear() + "-"
                 + (this.currentdate.getMonth()+1)  + "-" 
@@ -27,7 +34,9 @@ export class HomePage implements OnInit{
                 + this.currentdate.getSeconds();
 
   constructor(private plt: Platform, public alertController: AlertController, private authService: AuthService, private router: Router, private modalCtrl: ModalController)
-   {}
+   {
+     
+   }
 
    ngOnInit() {
   }
@@ -35,6 +44,7 @@ export class HomePage implements OnInit{
   ionViewWillEnter(){
    this.authService.getAllAppoint().subscribe(response => {
     this.appoints = response;
+    this.modifiedApp=JSON.parse(JSON.stringify(this.appoints));
   })
    this.authService.getProfiles().subscribe(response => {
     this.profile = response;
@@ -92,20 +102,34 @@ export class HomePage implements OnInit{
   }
 
   dateFilter($event){
-    this.appoints = this.appoints.filter((appoints)=>{
+    this.isSelectedD = true;
+    this.modifiedApp = this.modifiedApp.filter((app)=>{      
       if ($event.target.value=="Past"){
-        return appoints.date < this.datetime;
+        return app.date <= this.datetime;        
       } if ($event.target.value=="Future"){
-        return appoints.date > this.datetime;
-      } if ($event.target.value=="All"){
-        return true;
+        return app.date > this.datetime;
+      } if ($event.target.value=="" || $event.target.value==null){        
+        return this.appoints;
       }
-    });
+    });    
+  }
+
+  resetData(){
+    this.dateselect = null;
+    this.profselect = null;
+    this.isSelectedP = false;
+    this.isSelectedD = false;
+    this.modifiedApp=JSON.parse(JSON.stringify(this.appoints));    
   }
 
   profileFilter($event){
-    this.appoints = this.appoints.filter((appoints)=>{      
-        return appoints.id_profiles == $event.target.value;
+    this.modifiedApp = this.modifiedApp.filter((app)=>{   
+      if ($event.target.value==null || $event.target.value=="") {
+        return true
+      }  else {
+        this.isSelectedP=true;        
+        return app.id_profiles == $event.target.value;
+      }
     });
   }
 
