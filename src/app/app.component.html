@@ -12,7 +12,7 @@
                   </div>
                 </ion-avatar>
 
-                <ion-button (click)="deleteProfile(item.id_profiles)" slot="end">
+                <ion-button (click)="presentAlertConfirm(id_profiles)" slot="end">
                   <ion-icon name="trash"></ion-icon>
                 </ion-button>
                 {{item.nome}} {{item.cognome}}
@@ -26,23 +26,24 @@
           </ion-list>
     </ion-content>
    <ion-footer>
-    <ion-toolbar>
-      <ion-button slot="end" (click)=logoutClicked()><ion-icon name="log-out-outline"></ion-icon> Logout</ion-button>
-    </ion-toolbar>
+    <div class="ion-text-end">
+      <ion-button (click)=logoutClicked() href="register/"><ion-icon name="log-out-outline"></ion-icon> Logout</ion-button>
+    </div>
    </ion-footer>
   </ion-menu>
 
   <ion-router-outlet id="menu">
   </ion-router-outlet>
 
-    <div>
-      <ion-header>
+    
+      <ion-header class="ion-text-center">
         <ion-toolbar>
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-title class="ion-text-center">Medical Reminder</ion-title>
+          <div id="logo"><img src="\assets\icon\clipart.png" width="25" height="27" style="display:inline-block"></div>
+          <ion-title>  Medical Reminder</ion-title>
         </ion-toolbar>
       </ion-header>
-    </div>
+    
 </ion-app>

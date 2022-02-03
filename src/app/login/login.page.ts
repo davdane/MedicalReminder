@@ -48,6 +48,7 @@ export class LoginPage {
         localStorage.setItem('token', token);
         loading.dismiss();
         this.navCtrl.navigateRoot("/home");
+        window.location.reload();
       },
       async () => {
         const alert = await this.alertCtrl.create({ message: 'Login Failed', buttons: ['OK'] });

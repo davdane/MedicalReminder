@@ -74,6 +74,7 @@ export class AddAppointPage implements OnInit{
           await toast.present();
           this.ModalCtrl.dismiss();
           loading.dismiss();
+          window.location.reload();
         },
         async () => {
           const alert = await this.alertCtrl.create({ message: 'There is an error', buttons: ['OK'] });
@@ -88,6 +89,7 @@ export class AddAppointPage implements OnInit{
           await toast.present();
           loading.dismiss();
           this.ModalCtrl.dismiss();
+          window.location.reload();
         
         },
       // If there is an error

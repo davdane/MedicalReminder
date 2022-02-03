@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform, ModalController } from "@ionic/angular";
-import { AlertController } from '@ionic/angular';
+import { Platform, ModalController, NavController, AlertController, ToastController} from "@ionic/angular";
 import { AuthService } from '../auth.service';
 import { Profiles } from '../profiles.model';
 import { Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { Appointments } from '../appointments.model';
 import { AddAppointPage } from '../add-appoint/add-appoint.page';
 import { AddProfilePage } from '../add-profile/add-profile.page';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { timeoutWith } from 'rxjs/operators';
 
 
 @Component({
@@ -33,7 +33,14 @@ export class HomePage implements OnInit{
                 + this.currentdate.getMinutes() + ":" 
                 + this.currentdate.getSeconds();
 
-  constructor(private plt: Platform, public alertController: AlertController, private authService: AuthService, private router: Router, private modalCtrl: ModalController)
+  constructor(
+    private plt: Platform, 
+    public alertController: AlertController, 
+    private authService: AuthService, 
+    private NavCtrl: NavController, 
+    private modalCtrl: ModalController,
+    private toastCtrl: ToastController
+    )
    {
      
    }
@@ -82,11 +89,11 @@ export class HomePage implements OnInit{
         {
           text: 'Yes',
           role: 'Delete',
-          handler: () => {
-            this.authService.deleteAppoint(id_appoint).subscribe(()=>{
-              this.appoints = this.appoints.filter(app=>app.id_appoint !== id_appoint)
-            });
-            console.log('Appointment deleted!');
+          handler: async () => {
+            this.deleteAppoint(id_appoint);
+            const toast=this.toastCtrl.create({ message: 'Appointment deleted!', duration: 8000, color: 'dark' });
+            (await toast).present();
+            window.location.reload();
 
           }
         }, {
@@ -135,7 +142,7 @@ export class HomePage implements OnInit{
 
   doRefresh(event) {
     console.log('Refreshing...');
-
+    window.location.reload();
     setTimeout(() => {
       console.log('Refreshed!');
       event.target.complete();

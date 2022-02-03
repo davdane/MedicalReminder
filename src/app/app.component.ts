@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Platform, ModalController } from '@ionic/angular';
+import { Platform, ModalController, AlertController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Profiles } from './profiles.model';
@@ -25,7 +25,9 @@ export class AppComponent implements OnInit{
     private statusBar: StatusBar,
     private authService: AuthService,
     private router: Router,
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private alertCtrl: AlertController,
+    private toastCtrl: ToastController
   ) {
     this.initializeApp();
 
@@ -61,6 +63,32 @@ export class AppComponent implements OnInit{
   })
  }
 
+ async presentAlertConfirm(id_profiles: string) {
+  const alert = await this.alertCtrl.create({
+    header: 'You are deleting this profile.',
+    message: 'Deleting the profile will delete its related appointments. Are you sure?',
+    buttons: [
+      {
+        text: 'Yes',
+        role: 'Delete',
+        handler: () => {
+          this.deleteProfile(id_profiles);
+          this.toastCtrl.create({ message: 'Appointment deleted!', duration: 8000, color: 'dark' });
+          window.location.reload();
+        }
+      }, {
+        text: 'No',
+        handler: () => {
+          console.log('Cancel');
+        }
+      }
+    ]
+  });
+
+  await alert.present();
+}
+
+
  updateProf(profile: Profiles){
   this.modalCtrl.create({
     component: AddProfilePage,
@@ -70,7 +98,7 @@ export class AppComponent implements OnInit{
 
 async logoutClicked(){
   localStorage.removeItem("token");
-  this.router.navigateByUrl('/',{replaceUrl: true})
+  this.router.navigateByUrl('/register',{replaceUrl: true})
 }
 
  }

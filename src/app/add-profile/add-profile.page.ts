@@ -77,8 +77,9 @@ export class AddProfilePage implements OnInit {
       async () => {
         const toast = await this.toastCtrl.create({ message: 'Profile created!', duration: 8000, color: 'dark' });
         await toast.present();
-        this.ModalCtrl.dismiss()
+        this.ModalCtrl.dismiss();
         loading.dismiss();
+        window.location.reload();
         
       },
       // If there is an error
