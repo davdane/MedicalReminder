@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Platform, ModalController, NavController, AlertController, ToastController} from "@ionic/angular";
 import { AuthService } from '../auth.service';
-import { Profiles } from '../profiles.model';
+import { Profiles } from '../models/profiles.model';
 import { Router } from '@angular/router';
-import { Appointments } from '../appointments.model';
+import { Appointments } from '../models/appointments.model';
 import { AddAppointPage } from '../add-appoint/add-appoint.page';
 import { AddProfilePage } from '../add-profile/add-profile.page';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';

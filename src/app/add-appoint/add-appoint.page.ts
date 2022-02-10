@@ -3,8 +3,8 @@ import { Platform } from "@ionic/angular";
 import { ToastController, LoadingController, AlertController, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { Appointments } from '../appointments.model';
-import { Profiles } from '../profiles.model';
+import { Appointments } from '../models/appointments.model';
+import { Profiles } from '../models/profiles.model';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 imports: [

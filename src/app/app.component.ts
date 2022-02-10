@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Platform, ModalController, AlertController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { Profiles } from './profiles.model';
-import { Appointments } from './appointments.model';
+import { Profiles } from './models/profiles.model';
+import { Appointments } from './models/appointments.model';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { AddProfilePage } from './add-profile/add-profile.page';
@@ -32,11 +32,7 @@ export class AppComponent implements OnInit{
     this.initializeApp();
 
   }
-  //  ionViewWillEnter(){
-  //        this.authService.getProfiles().subscribe(response => {
-  //       this.profile = response;
-  //      })
-  //      }
+
   initializeApp()
   {
     this.platform.ready().then(() =>

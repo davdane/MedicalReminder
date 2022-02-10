@@ -3,7 +3,7 @@ import { Platform, ToastController, NavController, ModalController, LoadingContr
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
-import { Profiles } from '../profiles.model';
+import { Profiles } from '../models/profiles.model';
 
 imports: [
   FormsModule,
@@ -44,13 +44,15 @@ export class AddProfilePage implements OnInit {
       Validators.maxLength(36),
     ]),
     age: new FormControl('', Validators.compose([
-      Validators.maxLength(10),
+      
     ])),
     altezza: new FormControl('', Validators.compose([
       Validators.maxLength(6),
+      Validators.pattern ("[0-9]{0,3}([.][0-9]{0,2})?"),
     ])),
     peso: new FormControl('', Validators.compose([
       Validators.maxLength(6),
+      Validators.pattern ("[0-9]{0,3}([.][0-9]{0,2})?"),
     ]))
   });
 

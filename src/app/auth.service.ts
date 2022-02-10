@@ -1,33 +1,33 @@
-import { User } from './user.model';
+import { User } from './models/user.model';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { BehaviorSubject, from, Observable, Subject } from 'rxjs';
 import { map, tap, switchMap } from 'rxjs/operators';
-import { Profiles } from './profiles.model';
-import { Appointments } from './appointments.model';
+import { Profiles } from './models/profiles.model';
+import { Appointments } from './models/appointments.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private url = 'http://localhost/provaAPI/api';
-  isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+  isAuthenticated: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null); //verify the authentication
   constructor(private http: HttpClient) { 
     this.loadToken();
   }
 
   register(user: User) {
-    return this.http.post(`${this.url}/register`, user);
+    return this.http.post(`${this.url}/register`, user); //registers a new user
   }
 
   login(credentials: User): Observable<string> {
-    return this.http.post<{ token: string }>(`${this.url}/login`, credentials).pipe(
+    return this.http.post<{ token: string }>(`${this.url}/login`, credentials).pipe( //user login then gets a token
       map(response => response.token),
     tap(_ => {
-      this.isAuthenticated.next(true);
+      this.isAuthenticated.next(true);  //user is now authenticated
     }))
   }
-  async loadToken() {
+  async loadToken() { // if there is a valid token the user is authenticated
     const token = await localStorage.getItem('token');    
     if (token) {
       console.log('set token: ', token);
@@ -36,7 +36,7 @@ export class AuthService {
       this.isAuthenticated.next(false);
     }
   }
-  getProfiles(){
+  getProfiles(){ //get profiles based on the token
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
       Authorization: 'Bearer ' + token
