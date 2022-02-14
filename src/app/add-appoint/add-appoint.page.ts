@@ -116,7 +116,7 @@ export class AddAppointPage implements OnInit{
     if (this.appoints){
       this.isUpdate = true;
       var startDate = new Date(this.appoints.date);
-      var startDateIso = startDate.toISOString();
+      var startDateIso = startDate.toISOString();  //get the date in the right format
       this.form.setValue({title: this.appoints.titolo, desc: this.appoints.descrizione, place: this.appoints.luogo, date: startDateIso, id_profiles: this.appoints.id_profiles});      
     }
   }

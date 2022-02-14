@@ -2,13 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Platform, ModalController, NavController, AlertController, ToastController} from "@ionic/angular";
 import { AuthService } from '../auth.service';
 import { Profiles } from '../models/profiles.model';
-import { Router } from '@angular/router';
 import { Appointments } from '../models/appointments.model';
 import { AddAppointPage } from '../add-appoint/add-appoint.page';
 import { AddProfilePage } from '../add-profile/add-profile.page';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { timeoutWith } from 'rxjs/operators';
-
 
 @Component({
   selector: 'app-home',
@@ -108,7 +104,7 @@ export class HomePage implements OnInit{
     await alert.present();
   }
 
-  dateFilter($event){
+  dateFilter($event){ // filter for future/past appointments
     this.isSelectedD = true;
     this.modifiedApp = this.modifiedApp.filter((app)=>{      
       if ($event.target.value=="Past"){
@@ -121,7 +117,7 @@ export class HomePage implements OnInit{
     });    
   }
 
-  resetData(){
+  resetData(){ //reset the filter
     this.dateselect = null;
     this.profselect = null;
     this.isSelectedP = false;
@@ -129,7 +125,7 @@ export class HomePage implements OnInit{
     this.modifiedApp=JSON.parse(JSON.stringify(this.appoints));    
   }
 
-  profileFilter($event){
+  profileFilter($event){ //filter to view appointments of the selected profile
     this.modifiedApp = this.modifiedApp.filter((app)=>{   
       if ($event.target.value==null || $event.target.value=="") {
         return true
@@ -140,7 +136,7 @@ export class HomePage implements OnInit{
     });
   }
 
-  doRefresh(event) {
+  doRefresh(event) { //slide down to refresh the page
     console.log('Refreshing...');
     window.location.reload();
     setTimeout(() => {

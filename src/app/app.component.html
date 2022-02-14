@@ -1,18 +1,28 @@
 <ion-app>
+      <ion-header class="ion-text-center">
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+          </ion-buttons>
+          <div id="logo"><img src="\assets\icon\clipart.png" width="25" height="27" style="display:inline-block"></div>
+          <ion-title>  Medical Reminder</ion-title>
+        </ion-toolbar>
+      </ion-header>
 
   <ion-menu side= "start" content-id="menu" name="Menu">
     <ion-content>
           <ion-list>
             <ion-menu-toggle>
-              <!-- Quando viene aggiunto un profilo, viene inserito qui -->
+              <!-- A new profile is added here when created -->
               <ion-item *ngFor="let item of profile">
                 <ion-avatar slot="start" (click)="updateProf(item)">
                   <div class="avatar">
-                    {{item.nome.substring(0, 1).toUpperCase()}}{{item.cognome.substring(0, 1).toUpperCase()}}
+                    {{item.nome.substring(0, 1).toUpperCase()}}{{item.cognome.substring(0, 1).toUpperCase()}} 
+                    <!-- The avatar has the name and surname initials -->
                   </div>
                 </ion-avatar>
 
-                <ion-button (click)="presentAlertConfirm(id_profiles)" slot="end">
+                <ion-button (click)="presentAlertConfirm(item.id_profiles)" slot="end">
                   <ion-icon name="trash"></ion-icon>
                 </ion-button>
                 {{item.nome}} {{item.cognome}}
@@ -36,14 +46,6 @@
   </ion-router-outlet>
 
     
-      <ion-header class="ion-text-center">
-        <ion-toolbar>
-          <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
-          </ion-buttons>
-          <div id="logo"><img src="\assets\icon\clipart.png" width="25" height="27" style="display:inline-block"></div>
-          <ion-title>  Medical Reminder</ion-title>
-        </ion-toolbar>
-      </ion-header>
+
     
 </ion-app>

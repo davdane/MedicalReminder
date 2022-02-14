@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Platform, ToastController, NavController, ModalController, LoadingController, AlertController} from '@ionic/angular';
 import { AuthService } from '../auth.service';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
-import { Router } from '@angular/router';
 import { Profiles } from '../models/profiles.model';
 
 imports: [
@@ -28,7 +27,6 @@ export class AddProfilePage implements OnInit {
     public ModalCtrl: ModalController,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    private router: Router
     ) {
     this.plt.ready().then(() => {
     });
@@ -59,7 +57,7 @@ export class AddProfilePage implements OnInit {
   async onSubmit(){
     const loading = await this.loadingCtrl.create({ message: 'Creating...' });
     await loading.present();
-    if (this.isUpdate){
+    if (this.isUpdate){ //check if you want to update an existing profile or create a new one
     this.AuthService.updateProfile(this.form.value, this.profile.id_profiles).subscribe(
       async()=>{
         const toast = await this.toastCtrl.create({ message: 'Profile updated!', duration: 8000, color: 'dark' });

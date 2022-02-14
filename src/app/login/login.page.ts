@@ -44,7 +44,7 @@ export class LoginPage {
     await loading.present();
 
     this.authService.login(this.form.value).subscribe(
-      async token => {
+      async token => {  // if credentials are correct, you get a login token
         localStorage.setItem('token', token);
         loading.dismiss();
         this.navCtrl.navigateRoot("/home");
@@ -58,14 +58,14 @@ export class LoginPage {
       
     );
   }
-  ionViewWillLeave(){
-    this.menu.enable(true);
-    this.menu.swipeGesture(true);
-    }
   
-  ionViewWillEnter(){
+  ionViewWillEnter(){  //this blocks the side menu for this page
     this.menu.enable(false);
     this.menu.swipeGesture(false);
     }
-    
+
+  ionViewWillLeave(){ //re-enables the side menu after leaving this page
+    this.menu.enable(true);
+    this.menu.swipeGesture(true);
+    }  
 }

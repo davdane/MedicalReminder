@@ -2,7 +2,7 @@
 
 2-Unzip file provaApi in ../xampp/htdocs
 
-3-Compile in the folder "ionic-serve"
+3-Compile in the folder "ionic serve"
 
 4-Create DB "medical_reminder_test" and execute :
 
@@ -35,7 +35,7 @@ CREATE TABLE `appointments` (
  `date` datetime NOT NULL,
  PRIMARY KEY (`id_appoint`),
  KEY `profiles_appointments` (`id_profiles`),
- CONSTRAINT `profiles_appointments` FOREIGN KEY (`id_profiles`) REFERENCES `profiles` (`id_profiles`)
+ CONSTRAINT `profiles_appointments` FOREIGN KEY (`id_profiles`) REFERENCES `profiles` (`id_profiles`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4
 
 
