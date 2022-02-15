@@ -49,7 +49,7 @@ export class RegisterPage {
       },
       // If there is an error
       async () => {
-        const alert = await this.alertCtrl.create({ message: 'There is an error', buttons: ['OK'] });
+        const alert = await this.alertCtrl.create({ message: 'Email is already in use', buttons: ['OK'] });
         loading.dismiss();
         await alert.present();
       }

@@ -5,5 +5,5 @@ export interface Appointments{
     descrizione: string;
     luogo: string;
     date: string;
-    time: string;
+
 }

@@ -21,13 +21,8 @@ export class HomePage implements OnInit{
   isSelectedP=false;
   isSelectedD=false;
 
-  currentdate = new Date(); 
-  datetime =    this.currentdate.getFullYear() + "-"
-                + (this.currentdate.getMonth()+1)  + "-" 
-                + this.currentdate.getDate() + " "  
-                + this.currentdate.getHours() + ":"  
-                + this.currentdate.getMinutes() + ":" 
-                + this.currentdate.getSeconds();
+  currentdate = new Date();  
+  
 
   constructor(
     private plt: Platform, 
@@ -42,6 +37,41 @@ export class HomePage implements OnInit{
    }
 
    ngOnInit() {
+     
+  }
+
+  toIsoString(date) { //get the right format of the current date to compare
+    var tzo = -date.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            return (num < 10 ? '0' : '') + num;
+        };
+  
+    return date.getFullYear() +
+        '-' + pad(date.getMonth() + 1) +
+        '-' + pad(date.getDate()) +
+        'T' + pad(date.getHours()) +
+        ':' + pad(date.getMinutes()) +
+        ':' + pad(date.getSeconds()) +
+        dif + pad(Math.floor(Math.abs(tzo) / 60)) +
+        ':' + pad(Math.abs(tzo) % 60);
+  }
+
+  closeDate(date) {  //used check if the date of the appointment is closer than a week 
+    var tzo = -date.getTimezoneOffset(),
+        dif = tzo >= 0 ? '+' : '-',
+        pad = function(num) {
+            return (num < 10 ? '0' : '') + num;
+        };
+  
+    return date.getFullYear() +
+        '-' + pad(date.getMonth() + 1) +
+        '-' + pad(date.getDate() + 7) +
+        'T' + pad(date.getHours()) +
+        ':' + pad(date.getMinutes()) +
+        ':' + pad(date.getSeconds()) +
+        dif + pad(Math.floor(Math.abs(tzo) / 60)) +
+        ':' + pad(Math.abs(tzo) % 60);
   }
 
   ionViewWillEnter(){
@@ -108,9 +138,9 @@ export class HomePage implements OnInit{
     this.isSelectedD = true;
     this.modifiedApp = this.modifiedApp.filter((app)=>{      
       if ($event.target.value=="Past"){
-        return app.date <= this.datetime;        
+        return app.date < this.toIsoString(this.currentdate).slice(0, 19).replace('T', ' ');        
       } if ($event.target.value=="Future"){
-        return app.date > this.datetime;
+        return app.date >= this.toIsoString(this.currentdate).slice(0, 19).replace('T', ' ');
       } if ($event.target.value=="" || $event.target.value==null){        
         return this.appoints;
       }
