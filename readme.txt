@@ -1,10 +1,8 @@
-1-Unzip file project.rar
+1-Download https://drive.google.com/file/d/19ulhuWA_yd2Ff3Asp3VJQGGnEobuLVo0/view?usp=sharing and unzip the file project.rar
 
 2-Unzip file provaApi in ../xampp/htdocs
 
-3-Compile in the folder "ionic serve"
-
-4-Create DB "medical_reminder_test" and execute :
+3-Create DB "medical_reminder_test" and execute :
 
 CREATE TABLE `user` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -39,4 +37,4 @@ CREATE TABLE `appointments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4
 
 
-
+4-Compile in the folder "ionic serve"
