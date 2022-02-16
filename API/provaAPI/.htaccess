@@ -1,0 +1,8 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^api/register/?$ api/register.php
+RewriteRule ^api/login/?$ api/login.php
+RewriteRule ^api/profili/?$ api/profili.php
+RewriteRule ^api/profili/([0-9]+)?$ api/profili.php?id=$1
+RewriteRule ^api/appoint/?$ api/appoint.php
+RewriteRule ^api/appoint/([0-9]+)?$ api/appoint.php?id=$1
