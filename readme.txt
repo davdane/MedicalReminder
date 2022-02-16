@@ -37,4 +37,4 @@ CREATE TABLE `appointments` (
 ) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4
 
 
-4-Compile in the folder where you extracted project.rar with the command "ionic serve start"
+4-Compile in the folder where you extracted project.rar with the command "ionic serve"
