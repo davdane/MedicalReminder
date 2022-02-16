@@ -1,6 +1,6 @@
 1-Download https://drive.google.com/file/d/19ulhuWA_yd2Ff3Asp3VJQGGnEobuLVo0/view?usp=sharing and unzip the file project.rar
 
-2-Unzip file provaApi in ../xampp/htdocs
+2-Unzip file provaApi.rar (API/provaApi.rar)  in ../xampp/htdocs
 
 3-Create DB "medical_reminder_test" and execute :
 
